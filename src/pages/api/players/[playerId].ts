@@ -22,6 +22,10 @@ const handler = createApiHandler(async (req, res) => {
       const player = await controller.getById(playerId);
       return res.status(200).json(player);
     }
+    case 'POST': {
+      const player = await controller.create(req.body);
+      return res.status(201).json(player);
+    }
     case 'PATCH': {
       const player = await controller.update(playerId, req.body);
       return res.status(200).json(player);

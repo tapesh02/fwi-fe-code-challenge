@@ -1,48 +1,59 @@
 @use '../variables';
+@use '../breakpoints';
 
-$header-height: 2.5rem;
-
-.cell {
-  background-color: variables.$pearl;
-  border-bottom: 1px solid variables.$fog;
-  font-size: 1rem;
-  font-weight: 600;
-  height: $header-height;
-  letter-spacing: 0.00937em;
-  line-height: 1.75rem;
-  position: sticky;
-  text-align: left;
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background-color: rgb(240, 240, 240);
+  border-radius: 20px 20px 0px 0px;
   top: 3.5rem;
-  vertical-align: middle;
-  will-change: tranform;
+  position: sticky;
   z-index: 1;
 
-  &::after {
-    border: inherit;
-    bottom: 0;
-    content: '';
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
+  @include breakpoints.mobileTabDevicewidth {
+    z-index: 3;
   }
-}
 
-.avatar {
-  width: 4rem;
-}
+  & p {
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
 
-.player {
-  width: 100%;
-}
+  .headerActions {
+    display: flex;
+    gap: 1rem;
 
-.winnings {
-  padding-right: 1.5rem;
-  text-align: right;
-  width: 8rem;
-}
+    @include breakpoints.mobileTabDevicewidth {
+      flex-direction: column;
+      width: 100%;
+    }
 
-.country {
-  width: 6rem;
+    .select {
+      font-weight: 600;
+    }
+  }
+
+  .addPlayerBtn {
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: variables.$snow;
+    font-size: 1rem;
+    letter-spacing: 0.03rem;
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #0298cf;
+
+    &:hover {
+      border: 1px solid variables.$vivid;
+      background-color: variables.$snow;
+      color: #0298cf;
+    }
+  }
 }

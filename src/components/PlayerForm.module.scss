@@ -1,0 +1,209 @@
+@use '../variables';
+@use '../breakpoints';
+
+.formBg {
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+
+  .mainForm {
+    width: 80%;
+    height: 70vh;
+    margin: auto;
+    padding: 1rem;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px variables.$metal;
+    background-image: linear-gradient(
+      to left,
+      #c4e7f3,
+      #d1eaf8,
+      #ddedfc,
+      #e8f1fe,
+      #f2f5ff
+    );
+    padding-bottom: 2rem;
+    z-index: 5;
+
+    .fromHeader {
+      color: variables.$sleeping-panther;
+      font-size: 1.5rem;
+      padding: 1em;
+      width: fit-content;
+
+      hr {
+        height: 2px;
+        background-color: variables.$moss;
+        border: none;
+      }
+    }
+
+    .fromSection {
+      width: 100%;
+      margin: auto;
+      height: 50%;
+
+      .nameInputMain,
+      .winningsInputMain,
+      .countryInputMain,
+      .mainBtns {
+        display: flex;
+        flex-direction: column;
+        width: 43rem;
+        height: 27%;
+        justify-content: center;
+        align-items: flex-start;
+        margin: auto;
+        margin-bottom: 1vh;
+
+        @include breakpoints.tablet {
+          width: 100%;
+          padding-left: 0;
+          height: 25%;
+        }
+
+        .label {
+          font-size: 1rem;
+          height: 25%;
+          font-weight: 600;
+          color: variables.$sleeping-panther;
+          padding: 0.5rem;
+          letter-spacing: 0.02rem;
+        }
+        .input {
+          padding: 0.5rem;
+          margin: 0.2rem 0;
+          width: 70%;
+          height: 3rem;
+          font-size: 1rem;
+          letter-spacing: 0.02rem;
+          color: variables.$sleeping-panther;
+          cursor: text;
+          border: 1.5px solid variables.$stone;
+          border-radius: 5px;
+          box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
+          transition: 0.1s ease-in;
+          box-sizing: border-box;
+
+          @include breakpoints.tablet {
+            width: 100%;
+          }
+          &:focus,
+          :focus-within {
+            outline: 1px solid variables.$vivid;
+            border: none;
+          }
+          &::placeholder {
+            color: variables.$metal;
+          }
+        }
+        .select {
+          padding: 0.5rem;
+          margin: 0.2rem 0;
+          width: 70%;
+          height: 3rem;
+          box-sizing: border-box;
+          font-size: 1rem;
+          letter-spacing: 0.02rem;
+          border: 1.5px solid variables.$stone;
+          border-radius: 5px;
+          cursor: pointer;
+          box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
+          transition: all 1s ease-in;
+
+          @include breakpoints.tablet {
+            width: 100%;
+          }
+
+          &:focus,
+          :focus-within {
+            outline: 1px solid variables.$vivid;
+            border: none;
+          }
+
+          &::-webkit-scrollbar {
+            width: 0.7rem;
+          }
+          &::-webkit-scrollbar-track {
+            background-color: variables.$slate;
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: variables.$vivid;
+            border-radius: 8px;
+            &:hover {
+              background: variables.$snow;
+            }
+          }
+        }
+      }
+
+      .mainBtns {
+        height: 15%;
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: center;
+
+        .innerBtns {
+          display: flex;
+
+          .updateBtn {
+            background-color: #e28743;
+
+            &:hover {
+              color: #e28743;
+              background-color: variables.$snow;
+              border: 1px solid #e28743;
+            }
+          }
+        }
+
+        .button {
+          margin-right: 1em;
+          width: 6em;
+          height: 1.8em;
+          font-size: 1.1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 1em;
+          border: none;
+          border-radius: 5px;
+          color: snow;
+          box-shadow: 0px 3px 3px variables.$metal;
+          transition: all 0.1s ease-in-out;
+          background-color: variables.$vivid;
+
+          &:hover {
+            color: variables.$vivid;
+            background-color: variables.$snow;
+            cursor: pointer;
+            border: 1px solid variables.$vivid;
+            box-shadow: none;
+          }
+
+          &:nth-child(2) {
+            background-color: variables.$palisade;
+
+            &:hover {
+              color: variables.$palisade;
+              background-color: variables.$snow;
+              cursor: pointer;
+              border: 1px solid variables.$palisade;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

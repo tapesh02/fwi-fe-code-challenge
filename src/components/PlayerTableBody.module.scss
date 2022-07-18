@@ -1,37 +1,210 @@
 @use '../variables';
+@use '../breakpoints';
 
-.tbody {
-  background-color: variables.$snow;
+.tableSection {
+  position: relative;
+  overflow-y: scroll;
+  height: 78vh;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: silver;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: skyblue;
+  }
+
+  .table {
+    width: 100%;
+    table-layout: fixed;
+    min-width: 100%;
+    border-collapse: collapse;
+  }
+
+  .thead .th {
+    position: sticky;
+    top: 0rem;
+    background-color: #f6f9fc;
+    color: #8493a5;
+    font-size: 1.1rem;
+  }
 }
 
-.row {
-  background-color: variables.$snow;
-  transition: background-color 0.15s;
+.th,
+.td {
+  border-bottom: 1px solid #dddddd;
+  padding: 10px 20px;
+  word-break: break-all;
+  text-align: center;
+
+  & :first-child button {
+    background-color: variables.$vivid;
+    margin: 1.8%;
+  }
+  & :last-child button {
+    background-color: rgb(245, 52, 52);
+    margin: 1.8%;
+  }
+}
+
+.tbody .tr {
+  font-size: 1rem;
+  font-weight: 600;
+  &:last-of-type td {
+    border: 0px;
+    td:first-of-type {
+      border-radius: 0px 0px 0px 20px;
+    }
+    td:last-of-type {
+      border-radius: 0px 0px 20px 0px;
+    }
+  }
+}
+
+.tr:hover .td {
+  color: #0298cf;
+  cursor: pointer;
+  background-color: #f6f9fc;
+  font-weight: 600;
+}
+.sb-avatar__image {
+  box-shadow: 0.5px 1px 0.5px 1px rgb(0 0 0 / 60%);
+}
+.flagsMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+    box-sizing: border-box;
+  }
+}
+
+.button {
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #ffffff;
+  font-size: 1rem;
+  letter-spacing: 0.03rem;
+}
+
+.tooltip {
+  display: inline-block;
+  margin: 1.8%;
 
   &:hover {
-    background-color: variables.$pearl;
+    position: relative;
+  }
+  .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: black transparent transparent transparent;
+    }
+  }
+  &:hover .tooltiptext {
+    visibility: visible;
+  }
+}
+
+@include breakpoints.mobileTabDevicewidth {
+  .table,
+  .thead,
+  .tbody,
+  .th,
+  .td,
+  .tr {
+    display: block;
   }
 
-  &:not(:last-child) {
-    border-bottom: 1px solid variables.$pearl;
+  .table {
+    top: 0rem;
+    position: relative;
   }
-}
+  .tbody .tr {
+    &:last-of-type {
+      td:first-of-type {
+        border-radius: 0px;
+      }
+      td:last-of-type {
+        border-radius: 0px;
+      }
+    }
+  }
 
-.avatar {
-  text-align: center;
-}
+  .thead .tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
 
-.winnings {
-  padding-right: 1.5rem;
-  text-align: right;
-}
+  .tr {
+    border: 1px solid #ccc;
+  }
 
-.country {
-  align-items: center;
-  display: flex;
-  height: 100%;
-}
+  .td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
 
-.countryAvatar {
-  margin-right: 0.5rem;
+  .td:before {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 45%;
+    padding-right: 1.2rem;
+    white-space: nowrap;
+    padding-left: 1rem;
+    text-align: left;
+  }
+
+  .td:nth-of-type(1):before {
+    content: 'Avatar';
+    padding-top: 1.2rem;
+  }
+  .td:nth-of-type(2):before {
+    content: 'Player';
+  }
+  .td:nth-of-type(3):before {
+    content: 'Winnings';
+  }
+  .td:nth-of-type(4):before {
+    content: 'Country';
+    padding-top: 1.2rem;
+  }
+  .td:nth-of-type(5):before {
+    content: 'Action';
+    padding-top: 1.2rem;
+  }
 }
